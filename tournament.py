@@ -16,28 +16,28 @@ def main():
 NUM_ROUNDS = 100
 GAME_VERSION = 0 # 0 if R0, 1 if R1
 
-R0 = {
-    ('C', 'C'): (3, 3),
-    ('C', 'D'): (0, 5),
-    ('D', 'C'): (5, 0),
-    ('D', 'D'): (1, 1),
-}
 
-R1 = {
-    ('C', 'C'): (3, 3),
-    ('C', 'D'): (0, 8),
-    ('D', 'C'): (8, 0),
-    ('D', 'D'): (1, 1),
-}
+# 0 -- cooperate
+# 1 -- defect
+
+R0 = [
+    [(3, 3), (0, 5)],
+    [(5, 0), (1, 1)],
+]
+    
+R1 = [
+    [(3, 3), (0, 8)],
+    [(8, 0), (1, 1)],
+]
 
 
 def calculate_payoffs(x: str, y: str, game_version=0) -> (int, int):
-    assert x in ['C', 'D']
-    assert y in ['C', 'D']
+    assert x in [0, 1]
+    assert y in [0, 1]
     if game_version == 0:
-        return R0[(x, y)]
+        return R0[x][y]
     else:
-        return R1[(x, y)]
+        return R1[x][y]
 
 
 def run_battle(strategy1, strategy2):
@@ -45,8 +45,8 @@ def run_battle(strategy1, strategy2):
     history2 = []
     payoffs = [0, 0]
     for round in range(NUM_ROUNDS):
-        x = strategy1(history1, history2)
-        y = strategy2(history2, history1)
+        x = strategy1(merge_histories(history1, history2))
+        y = strategy2(merge_histories(history2, history1))
         tmp_payoffs = calculate_payoffs(x, y, game_version=GAME_VERSION)
         history1.append(x)
         history2.append(y)
@@ -65,7 +65,6 @@ def conduct_tournament(strategies):
             if i != j:
                 payoffs[0], payoffs[1] = payoffs[1], payoffs[0]
                 results[j][i] = payoffs
-
 
     sort_strategies(strategies, results)
     print_results(strategies, results)
@@ -108,6 +107,16 @@ def print_results(strategies, results):
         table[i + 1][-1] = calculate_sum_of_payoffs(results[i])
 
     print(tabulate(table))
+
+
+def merge_histories(history1: list[int], history2: list[int]) -> list[int]:
+    N = len(history1)
+    assert N == len(history2)
+    history = []
+    for i in range(N):
+        history.append(history1[i])
+        history.append(history2[i])
+    return history
     
     
 if __name__ == '__main__':
