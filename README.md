@@ -6,7 +6,7 @@ To run the tournament, simply write
 python3 tournament.py
 ```
 
-In order to add your strategy to the tournament, you need to write a corresponding function and add it to the list of strategies in the `main` function.
+In order to add your strategy to the tournament, you need to write a corresponding function to the file `strategies.py`.
 
 Every strategy has to have 2 arguments:
   
