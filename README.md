@@ -8,7 +8,7 @@ python3 tournament.py
 
 In order to add your strategy to the tournament, you need to write a corresponding function to the file `strategies.py`.
 
-Every strategy has only one argument: the history of the game. 0 means cooperate, 1 means defect.
+Every strategy has only one argument, the history of the game. 0 is to cooperate, 1 is to defect.
 
 Output example:
 

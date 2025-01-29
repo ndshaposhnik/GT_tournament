@@ -31,7 +31,7 @@ R1 = [
 ]
 
 
-def calculate_payoffs(x: str, y: str, game_version=0) -> (int, int):
+def calculate_payoffs(x: int, y: int, game_version=0) -> (int, int):
     assert x in [0, 1]
     assert y in [0, 1]
     if game_version == 0:

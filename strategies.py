@@ -1,7 +1,7 @@
 import random as rnd
 
 
-# Every function in this file that is NOT a strategy should begin with a '_'.
+# Every function in this file that is NOT a strategy should begin with an '_'.
 
 # 0 -- cooperate
 # 1 -- defect
@@ -16,9 +16,7 @@ def all_defect(history):
 
 
 def random(history):
-    if rnd.randint(0, 1) == 0:
-        return 0
-    return 1
+    return 0 if rnd.randint(0, 1) else 1
 
 
 def tit_for_tat(history):
