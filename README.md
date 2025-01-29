@@ -8,12 +8,7 @@ python3 tournament.py
 
 In order to add your strategy to the tournament, you need to write a corresponding function to the file `strategies.py`.
 
-Every strategy has to have 2 arguments:
-  
-  - `your_history: list[str]` is a list of the moves of your strategy;
-  - `opponent_history: list[str]` is a list of the moves of you opponent's strategy.
-
-Each move is either `'C'` or `'D'`.
+Every strategy has only one argument: the history of the game. 0 means cooperate, 1 means defect.
 
 Output example:
 
