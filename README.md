@@ -6,6 +6,15 @@ To run the tournament, simply write
 python3 tournament.py
 ```
 
+In order to add your strategy to the tournament, you need to write a corresponding function and add it to the list of strategies in the `main` function.
+
+Every strategy has to have 2 arguments:
+  
+  - `your_history: list[str]` is a list of the moves of your strategy;
+  - `opponent_history: list[str]` is a list of the moves of you opponent's strategy.
+
+Each move is either `'C'` or `'D'`.
+
 Output example:
 
 ```
